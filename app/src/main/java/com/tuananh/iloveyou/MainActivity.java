@@ -4,11 +4,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity
@@ -16,7 +13,7 @@ public class MainActivity extends AppCompatActivity
     private Button mButtonNo;
     private Button mButtonYes;
     private int mIndex;
-    private int mHeight, mWidth;
+    private int mX1, mX2, mY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +21,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         mButtonNo = (Button) findViewById(R.id.button_no);
         mButtonYes = (Button) findViewById(R.id.button_yes);
-        findViewById(R.id.button_yes).setOnClickListener(this);
-        findViewById(R.id.button_no).setOnTouchListener(this);
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        mHeight = displayMetrics.heightPixels;
-        mWidth = displayMetrics.widthPixels;
+        mButtonYes.setOnClickListener(this);
+        mButtonNo.setOnTouchListener(this);
     }
 
     @Override
@@ -45,7 +38,7 @@ public class MainActivity extends AppCompatActivity
 
     private void showOk() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
-            .setMessage("Anh biết mà !")
+            .setMessage("Anh biết mà, <3")
             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
@@ -65,34 +58,49 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    private void reset() {
+        mButtonYes.setX(mX1);
+        mButtonYes.setY(mY);
+        mButtonNo.setX(mX2);
+        mButtonNo.setY(mY);
+    }
+
     private void move() {
-        mIndex += 1;
+        mIndex = mIndex < 7 ? mIndex += 1 : 1;
         switch (mIndex) {
+            case 0:
+                reset();
+                break;
             case 1:
                 mButtonNo.setY(mButtonNo.getY() -
-                    getResources().getDimensionPixelSize(R.dimen.margin_padding_150));
+                    getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
+                mX1 = (int) mButtonYes.getX();
+                mX2 = (int) mButtonNo.getX();
+                mY = (int) mButtonYes.getY();
                 break;
             case 2:
                 mButtonNo.setY(mButtonNo.getY() +
-                    getResources().getDimensionPixelSize(R.dimen.margin_padding_150));
+                    getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
                 break;
             case 3:
-                mButtonYes.setX(mWidth - mButtonYes.getWidth() -
-                    getResources().getDimensionPixelSize(R.dimen.margin_padding_30));
-                mButtonNo.setX(getResources().getDimensionPixelSize(R.dimen.margin_padding_30));
+                mButtonYes.setX(mX2);
+                mButtonNo.setX(mX1);
                 break;
             case 4:
-                mButtonNo.setX(mWidth - mButtonNo.getWidth() -
-                    getResources().getDimensionPixelSize(R.dimen.margin_padding_30));
-                mButtonYes.setX(getResources().getDimensionPixelSize(R.dimen.margin_padding_30));
+                mButtonYes.setX(mX1);
+                mButtonNo.setX(mX2);
                 break;
             case 5:
-                Animation moveRight =
-                    AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move_right);
-                Animation moveLeft =
-                    AnimationUtils.loadAnimation(getApplicationContext(), R.anim.move_left);
-                mButtonNo.startAnimation(moveRight);
-                mButtonYes.startAnimation(moveLeft);
+                mButtonNo.setY(mButtonNo.getY() +
+                    getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
+                break;
+            case 6:
+                mButtonNo.setY(mButtonNo.getY() -
+                    getResources().getDimensionPixelSize(R.dimen.margin_padding_200));
+                break;
+            case 7:
+                mButtonNo.setY(mButtonNo.getY() +
+                    getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
                 break;
         }
     }
