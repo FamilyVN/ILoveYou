@@ -1,15 +1,19 @@
 package com.tuananh.iloveyou;
 
+import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
-    implements View.OnClickListener, View.OnTouchListener {
+        implements View.OnClickListener, View.OnTouchListener {
     private Button mButtonNo;
     private Button mButtonYes;
     private int mIndex;
@@ -19,10 +23,25 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        hideStatusBar();
         mButtonNo = (Button) findViewById(R.id.button_no);
         mButtonYes = (Button) findViewById(R.id.button_yes);
         mButtonYes.setOnClickListener(this);
         mButtonNo.setOnTouchListener(this);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "love.ttf");
+        mButtonYes.setTypeface(typeface);
+        mButtonNo.setTypeface(typeface);
+        ((TextView) findViewById(R.id.text_i_love_you)).setTypeface(typeface);
+    }
+
+    private void hideStatusBar() {
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
     }
 
     @Override
@@ -38,12 +57,12 @@ public class MainActivity extends AppCompatActivity
 
     private void showOk() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this)
-            .setMessage("Anh biết mà, <3")
-            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                }
-            });
+                .setMessage("Anh biết mà, <3")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
         builder.show();
     }
 
@@ -73,14 +92,14 @@ public class MainActivity extends AppCompatActivity
                 break;
             case 1:
                 mButtonNo.setY(mButtonNo.getY() -
-                    getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
+                        getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
                 mX1 = (int) mButtonYes.getX();
                 mX2 = (int) mButtonNo.getX();
                 mY = (int) mButtonYes.getY();
                 break;
             case 2:
                 mButtonNo.setY(mButtonNo.getY() +
-                    getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
+                        getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
                 break;
             case 3:
                 mButtonYes.setX(mX2);
@@ -92,15 +111,15 @@ public class MainActivity extends AppCompatActivity
                 break;
             case 5:
                 mButtonNo.setY(mButtonNo.getY() +
-                    getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
+                        getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
                 break;
             case 6:
                 mButtonNo.setY(mButtonNo.getY() -
-                    getResources().getDimensionPixelSize(R.dimen.margin_padding_200));
+                        getResources().getDimensionPixelSize(R.dimen.margin_padding_200));
                 break;
             case 7:
                 mButtonNo.setY(mButtonNo.getY() +
-                    getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
+                        getResources().getDimensionPixelSize(R.dimen.margin_padding_100));
                 break;
         }
     }

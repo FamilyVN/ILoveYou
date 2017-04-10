@@ -12,5 +12,6 @@
     <dimen name="size_130">130dp</dimen>
     <dimen name="size_button">130dp</dimen>
     <dimen name="size_1">1dp</dimen>
+    <dimen name="text_size_18">18sp</dimen>
     <dimen name="text_size_14">14sp</dimen>
 </resources>

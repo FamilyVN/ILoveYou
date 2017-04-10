@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.tuananh.iloveyou.MainActivity">
 
     <TextView
@@ -14,7 +14,7 @@
         android:gravity="center_horizontal"
         android:padding="@dimen/margin_padding_5"
         android:text="EM CÓ YÊU ANH KHÔNG ?"
-        android:textSize="@dimen/text_size_14"/>
+        android:textSize="@dimen/text_size_14" />
 
     <Button
         android:id="@+id/button_yes"
@@ -24,7 +24,8 @@
         android:layout_marginLeft="@dimen/margin_padding_30"
         android:layout_marginTop="@dimen/margin_padding_150"
         android:background="@drawable/selector_button_grey"
-        android:text="Có"/>
+        android:text="Có"
+        android:textSize="@dimen/text_size_18" />
 
     <Button
         android:id="@+id/button_no"
@@ -35,5 +36,6 @@
         android:layout_marginRight="@dimen/margin_padding_30"
         android:layout_marginTop="@dimen/margin_padding_150"
         android:background="@drawable/selector_button_grey"
-        android:text="Không"/>
+        android:text="Không"
+        android:textSize="@dimen/text_size_18" />
 </RelativeLayout>
