@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context="com.tuananh.iloveyou.MainActivity">
 
     <TextView
         android:id="@+id/text_i_love_you"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_padding_150"
+        android:layout_marginTop="@dimen/margin_padding_130"
         android:gravity="center_horizontal"
         android:padding="@dimen/margin_padding_5"
         android:text="EM CÓ YÊU ANH KHÔNG ?"
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_i_love_you"
         android:layout_marginLeft="@dimen/margin_padding_30"
-        android:layout_marginTop="@dimen/margin_padding_150"
+        android:layout_marginTop="@dimen/margin_padding_130"
         android:background="@drawable/selector_button_grey"
         android:text="Có"/>
 
@@ -33,7 +34,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/text_i_love_you"
         android:layout_marginRight="@dimen/margin_padding_30"
-        android:layout_marginTop="@dimen/margin_padding_150"
+        android:layout_marginTop="@dimen/margin_padding_130"
         android:background="@drawable/selector_button_grey"
         android:text="Không"/>
 </RelativeLayout>
